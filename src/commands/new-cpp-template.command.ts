@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import * as mkdirp from "mkdirp";
 
-import { InputBoxOptions, OpenDialogOptions, Uri, window } from "vscode";
+import { commands, InputBoxOptions, OpenDialogOptions, Uri, window } from "vscode";
 import { existsSync, lstatSync, writeFile } from "fs";
 import { getCppTemplate } from "../templates/cpp.template";
 
@@ -86,17 +86,25 @@ export const newCppTemplate = async (uri: Uri) => {
         usefStream: boolean,
         targetDirectory: string,
     ) {
-        const directoryPath = `${targetDirectory}`;
+        const directoryPath = `${targetDirectory}/${taskName}`; // Needs "/" at the end?
         if (!existsSync(directoryPath)) {
-            await createDirectory(directoryPath);
+            console.log("Needs to create directory");
+            createDirectory(directoryPath); // Adding await, and the function will stop here. Why?
+            console.log("Finished creating directory");
         }
 
-        await Promise.all([createCppTemplate(taskName, iD, usefStream, targetDirectory)]); // Hmm... I don't need Promise.all() here, right?
+        console.log("Creating Cpp template");
+        await Promise.all([createCppTemplate(taskName, iD, usefStream, directoryPath)]); // Hmm... I don't need Promise.all() here, right?
+
+        // Open the folder created
+        let targetUri = Uri.parse(`${directoryPath}`);
+        commands.executeCommand('vscode.openFolder', targetUri);
     }
 
     function createDirectory(targetDirectory: string): Promise<void> {
         return new Promise((resolve, reject) => {
             mkdirp(targetDirectory);
+            console.log(`Successfully created directory at ${targetDirectory}`);
         });
     }
     /*
@@ -126,6 +134,7 @@ export const newCppTemplate = async (uri: Uri) => {
         if (existsSync(targetPath)) {
             throw Error(`${correctedTaskName}.cpp already exists`);
         }
+        console.log("Start writing file...");
         return new Promise<void>(async (resolve, reject) => {
             writeFile(
                 targetPath,
