@@ -11,8 +11,12 @@ export const newCppTemplate = async (uri: Uri) => {
         window.showErrorMessage("The task name must not be empty");
         return;
     }
-    const iD;
 
+    const iD = await promptForID();
+    if (_.isNil(iD) || iD.trim() === "") {
+        window.showErrorMessage("Your ID must not be empty");
+    }
+    
     let targetDirectory;
     if (_.isNil(_.get(uri, "fsPath")) || !lstatSync(uri.fsPath).isDirectory()) {
         targetDirectory = await promptForTargetDirectory();
@@ -45,7 +49,7 @@ export const newCppTemplate = async (uri: Uri) => {
         const fStreamPromptOptions: InputBoxOptions = {
             prompt: "Does this program need to use the fstream library? (Y/n)"
         };
-
+        return window.showInputBox(fStreamPromptOptions);
         // Check the cases before deciding
     }
 
@@ -108,7 +112,7 @@ export const newCppTemplate = async (uri: Uri) => {
         const correctedTaskName = taskName.toLowerCase;
         const targetPath = `${targetDirectory}/${correctedTaskName}.cpp`;
         if (existsSync(targetPath)) {
-            throw Error(`${correctedTaskName}.cpp already exists!`);
+            throw Error(`${correctedTaskName}.cpp already exists`);
         }
         return new Promise<void>(async (resolve, reject) => {
             writeFile(
@@ -125,4 +129,4 @@ export const newCppTemplate = async (uri: Uri) => {
             );
         });
     }
-}
+};
