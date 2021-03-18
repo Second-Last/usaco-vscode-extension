@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:usaco.helloWorld"
+		"onCommand:usaco.cpp"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "usaco.helloWorld",
-				"title": "Hello World"
+				"command": "usaco.cpp",
+				"title": "USACO C++ Template"
 			}
 		]
 	},
@@ -30,16 +30,22 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.54.0",
 		"@types/glob": "^7.1.3",
+		"@types/lodash": "^4.14.168",
+		"@types/mkdirp": "^1.0.1",
 		"@types/mocha": "^8.0.4",
 		"@types/node": "^12.11.7",
-		"eslint": "^7.19.0",
+		"@types/vscode": "^1.54.0",
 		"@typescript-eslint/eslint-plugin": "^4.14.1",
 		"@typescript-eslint/parser": "^4.14.1",
+		"eslint": "^7.19.0",
 		"glob": "^7.1.6",
 		"mocha": "^8.2.1",
 		"typescript": "^4.1.3",
 		"vscode-test": "^1.5.0"
+	},
+	"dependencies": {
+		"lodash": "^4.17.21",
+		"mkdirp": "^1.0.4"
 	}
 }
