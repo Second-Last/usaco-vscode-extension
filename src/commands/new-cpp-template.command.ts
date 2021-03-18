@@ -15,8 +15,11 @@ export const newCppTemplate = async (uri: Uri) => {
     const iD = await promptForID();
     if (_.isNil(iD) || iD.trim() === "") {
         window.showErrorMessage("Your ID must not be empty");
+        return;
     }
-    
+
+
+
     let targetDirectory;
     if (_.isNil(_.get(uri, "fsPath")) || !lstatSync(uri.fsPath).isDirectory()) {
         targetDirectory = await promptForTargetDirectory();
@@ -28,7 +31,15 @@ export const newCppTemplate = async (uri: Uri) => {
         targetDirectory = uri.fsPath;
     }
 
-    
+    try {
+        await generateCppCode(taskName, iD, true, targetDirectory);
+        window.showInformationMessage("Successfully generated file(s)");
+    } catch (error) {
+        window.showErrorMessage(
+            `Error:
+              ${error instanceof Error ? error.message : JSON.stringify(error)}`
+        );
+    }
 
     // Below are all the functions
     function promptForTaskName(): Thenable<string | undefined> {
@@ -46,6 +57,7 @@ export const newCppTemplate = async (uri: Uri) => {
     }
 
     function promptForfStream(): Thenable<string | undefined> {
+        // TODO: should use ShowQuickPick
         const fStreamPromptOptions: InputBoxOptions = {
             prompt: "Does this program need to use the fstream library? (Y/n)"
         };
@@ -109,7 +121,7 @@ export const newCppTemplate = async (uri: Uri) => {
         usefStream: boolean,
         targetDirectory: string,
     ) {
-        const correctedTaskName = taskName.toLowerCase;
+        const correctedTaskName = taskName.toLowerCase();
         const targetPath = `${targetDirectory}/${correctedTaskName}.cpp`;
         if (existsSync(targetPath)) {
             throw Error(`${correctedTaskName}.cpp already exists`);
