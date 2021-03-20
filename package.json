@@ -1,6 +1,6 @@
 {
   "name": "usaco",
-  "displayName": "USACO",
+  "displayName": "USACO Helper",
   "description": "An extension that simplifies the process of writing code in the USACO-required format.",
   "version": "0.0.1",
   "engines": {
@@ -17,7 +17,7 @@
     "commands": [
       {
         "command": "usaco.cpp",
-        "title": "USACO C++ Template"
+        "title": "USACO: C++ Template"
       }
     ]
   },
@@ -49,7 +49,14 @@
     "lodash": "^4.17.21",
     "mkdirp": "^1.0.4"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "USACO",
+    "CP",
+    "Competitive Programming"
+  ],
+  "author": "GZGavinZhao",
+  "publisher": "GZGavinZhao",
+  "preview": true,
+  "icon": "miscellaneous/cowheadlogo.gif",
+  "license": "MIT"
 }

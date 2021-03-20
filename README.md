@@ -1,3 +1,12 @@
+<p align="center">
+<img src = "miscellaneous/cowheadlogo.gif" alt = "USACO Cow Head Logo">
+</p>
+
+<p align = "center">
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="License: MIT"></a>
+<a href="https://marketplace.visualstudio.com/items?itemName=GZGavinZhao.usaco"><img src="https://img.shields.io/visual-studio-marketplace/d/GZGavinZhao.usaco" alt="Visual Studio Marketplace Downloads"></a>
+</p>
+
 # USACO VSCode Extension README
 
 An extension that helps you simpify the process of writing required code for the USACO grading system to recognize your submission. Currently supports C++, but will include Java and Python in the future.
@@ -36,15 +45,28 @@ This extension contributes the following settings:
 * `myExtension.enable`: enable/disable this extension
 * `myExtension.thing`: set to `blah` to do something -->
 
+## Contributing
+
+- Help finish our [Future Plans](#future-plans) mentioned at the top
+- If you know some code in C++/Java/Python that you have to write everytime for a USACO submission, feel free to [open an issue](https://github.com/GZGavinZhao/usaco-vscode-extension/issues) on Github and I will add them to the extension! I don't know any Java/Python so this can really help!
+- See [Known Issues](#known-issues) below
+
 ## Known Issues
 
 As an absolute TS noob (bruh I don't even know how to use JS), there is definitely room for reducing some unnecessary code and warning messages. Even just scanning through the code and reducing clutter helps! I have made comments at suspicious sections and will pin [issues](https://github.com/GZGavinZhao/usaco-vscode-extension/issues) that I have discovered myself but have no idea how to deal with those bad boys.
 
 ## Release Notes
 
-### 1.0.0
+### 0.0.1
 
 Initial release of the USACO extension! Supports only C++.
+<p align = "center">
+<img src = "miscellaneous/thumsup.jpg" height = "100" alt = "thumsUpYeah">
+</p>
+
+## Disclaimer
+
+This extension is not affiliated nor endorsed by the [USACO](httos://usaco.org) and the USACO staff. Use at your own risk! I'm not responsible for any effect this extension might have on your USACO submissions/grades. (Well theoretically there shouldn't be any, but just in case)
 <!-- 
 -----------------------------------------------------------------------------------------------------------
 ## Following extension guidelines

@@ -23,7 +23,7 @@ export const newCppTemplate = async (uri: Uri) => {
     const fStreamResult = await promptForfStream();
     var fStream;
     if (_.isNil(fStreamResult) || fStreamResult.trim() === "") {
-        window.showErrorMessage("Your must choose whether to use fstream or not");
+        window.showErrorMessage("You must choose whether to use fstream or not");
         return;
     } else {
         fStream = fStreamResult === 'Yes' ? true : false;
