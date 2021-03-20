@@ -6,7 +6,7 @@ import { existsSync, lstatSync, writeFile } from "fs";
 import { getCppTemplate } from "../templates/cpp.template";
 
 export const newCppTemplate = async (uri: Uri) => {
-    const taskName = await promptForTaskName();
+    const taskName = (await promptForTaskName());
     if (_.isNil(taskName) || taskName.trim() === "") {
         window.showErrorMessage("The task name must not be empty");
         return;
@@ -86,23 +86,26 @@ export const newCppTemplate = async (uri: Uri) => {
         usefStream: boolean,
         targetDirectory: string,
     ) {
-        const directoryPath = `${targetDirectory}/${taskName}`; // Needs "/" at the end?
+        const correctedTaskName = taskName.toLowerCase();
+        const directoryPath = `${targetDirectory}/${correctedTaskName}`;
         if (!existsSync(directoryPath)) {
             console.log("Needs to create directory");
-            createDirectory(directoryPath); // Adding await, and the function will stop here. Why?
+            await createDirectory(directoryPath); // Adding await, and the function will stop here. Why?
             console.log("Finished creating directory");
         }
 
         console.log("Creating Cpp template");
-        await Promise.all([createCppTemplate(taskName, iD, usefStream, directoryPath)]); // Hmm... I don't need Promise.all() here, right?
+        await Promise.all([createCppTemplate(correctedTaskName, iD, usefStream, directoryPath)]); // Hmm... I don't need Promise.all() here, right?
 
         // Open the folder created
         let targetUri = Uri.parse(`${directoryPath}`);
+        let targetFile = Uri.parse(`${directoryPath}/${taskName}.cpp`);
         commands.executeCommand('vscode.openFolder', targetUri);
+        commands.executeCommand('vscode.open', targetFile);
     }
 
     function createDirectory(targetDirectory: string): Promise<void> {
-        return new Promise((resolve, reject) => {
+        return new Promise(() => {
             mkdirp(targetDirectory);
             console.log(`Successfully created directory at ${targetDirectory}`);
         });
@@ -121,6 +124,13 @@ export const newCppTemplate = async (uri: Uri) => {
         Type '(error: any) => void' has no properties in common with type 'Options'.ts(2345)
 
     Any help would be appreciated!
+    */
+
+    /*
+    Gives warning:
+    (node:3044) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+    
+    Not quite sure what triggered it and if it's a problem from my code
     */
 
     function createCppTemplate(
