@@ -1,9 +1,11 @@
 import * as _ from "lodash";
 import * as mkdirp from "mkdirp";
 
-import { commands, InputBoxOptions, OpenDialogOptions, Uri, window } from "vscode";
+import { commands, InputBoxOptions, OpenDialogOptions, QuickPick, QuickPickItem, QuickPickOptions, Uri, window } from "vscode";
 import { existsSync, lstatSync, writeFile } from "fs";
 import { getCppTemplate } from "../templates/cpp.template";
+
+var octicons = require("@primer/octicons");
 
 export const newCppTemplate = async (uri: Uri) => {
     const taskName = (await promptForTaskName());
@@ -18,7 +20,7 @@ export const newCppTemplate = async (uri: Uri) => {
         return;
     }
 
-
+    const fStream = (await promptForfStream()) === 'Yes' ? true : false;
 
     let targetDirectory;
     if (_.isNil(_.get(uri, "fsPath")) || !lstatSync(uri.fsPath).isDirectory()) {
@@ -32,7 +34,7 @@ export const newCppTemplate = async (uri: Uri) => {
     }
 
     try {
-        await generateCppCode(taskName, iD, true, targetDirectory);
+        await generateCppCode(taskName, iD, fStream, targetDirectory);
         window.showInformationMessage("Successfully generated file(s)");
     } catch (error) {
         window.showErrorMessage(
@@ -57,12 +59,11 @@ export const newCppTemplate = async (uri: Uri) => {
     }
 
     function promptForfStream(): Thenable<string | undefined> {
-        // TODO: should use ShowQuickPick
-        const fStreamPromptOptions: InputBoxOptions = {
-            prompt: "Does this program need to use the fstream library? (Y/n)"
+        const fStreamPromptOptions: QuickPickOptions = {
+            canPickMany: false,
+            placeHolder: 'If the in/output format is (file XXX.in or XXX.out), choose Yes',
         };
-        return window.showInputBox(fStreamPromptOptions);
-        // Check the cases before deciding
+        return window.showQuickPick(['$(check) Yes', '$(x) No'], fStreamPromptOptions);
     }
 
     async function promptForTargetDirectory(): Promise<string | undefined> {
@@ -101,8 +102,6 @@ export const newCppTemplate = async (uri: Uri) => {
         // Open the folder created
         let targetUri = Uri.parse(`${directoryPath}`);
         commands.executeCommand('vscode.openFolder', targetUri);
-        // let targetFile = Uri.parse(`${directoryPath}/${taskName}.cpp`);
-        // commands.executeCommand('vscode.open', targetFile);
     }
 
     function createDirectory(targetDirectory: string): Promise<void> {
