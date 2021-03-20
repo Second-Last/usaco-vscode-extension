@@ -70,6 +70,7 @@ export const newCppTemplate = async (uri: Uri) => {
             canSelectMany: false,
             openLabel: "Select a folder to create the file in",
             canSelectFolders: true,
+            canSelectFiles: false,
         };
 
         return window.showOpenDialog(options).then((uri) => {
@@ -87,27 +88,33 @@ export const newCppTemplate = async (uri: Uri) => {
         targetDirectory: string,
     ) {
         const correctedTaskName = taskName.toLowerCase();
-        const directoryPath = `${targetDirectory}/${correctedTaskName}`;
+        const directoryPath = `${targetDirectory}/${correctedTaskName}/`;
         if (!existsSync(directoryPath)) {
             console.log("Needs to create directory");
-            await createDirectory(directoryPath); // Adding await, and the function will stop here. Why?
-            console.log("Finished creating directory");
+            await createDirectory(directoryPath);
         }
 
         console.log("Creating Cpp template");
-        await Promise.all([createCppTemplate(correctedTaskName, iD, usefStream, directoryPath)]); // Hmm... I don't need Promise.all() here, right?
+        await createCppTemplate(correctedTaskName, iD, usefStream, directoryPath);
+        console.log("Finished creating the C++ template");
 
         // Open the folder created
         let targetUri = Uri.parse(`${directoryPath}`);
-        let targetFile = Uri.parse(`${directoryPath}/${taskName}.cpp`);
         commands.executeCommand('vscode.openFolder', targetUri);
-        commands.executeCommand('vscode.open', targetFile);
+        // let targetFile = Uri.parse(`${directoryPath}/${taskName}.cpp`);
+        // commands.executeCommand('vscode.open', targetFile);
     }
 
     function createDirectory(targetDirectory: string): Promise<void> {
-        return new Promise(() => {
-            mkdirp(targetDirectory);
-            console.log(`Successfully created directory at ${targetDirectory}`);
+        return new Promise((resolve, reject) => {
+            mkdirp(targetDirectory).then(made => {
+                // Bruh is this if statement even necessary
+                if (existsSync(targetDirectory)) {
+                    console.log(`Successfully created directory at ${targetDirectory}`);
+                    resolve();
+                }
+                else { reject(); }
+            });
         });
     }
     /*
@@ -122,7 +129,8 @@ export const newCppTemplate = async (uri: Uri) => {
     This code throws the problem:
         Argument of type '(error: any) => void' is not assignable to parameter of type 'Mode | Options'.
         Type '(error: any) => void' has no properties in common with type 'Options'.ts(2345)
-
+    
+    I know async from Dart, so I forced it to resolve, but I'm a TS noob so I don't know how to fix it. 
     Any help would be appreciated!
     */
 

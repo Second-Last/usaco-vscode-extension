@@ -18,7 +18,7 @@ int main ()
     ofstream fout ("${correctedTaskName}.out");
     ifstream fin ("${correctedTaskName}.in");
 
-
+    
 
     return 0;
 }
