@@ -5,6 +5,7 @@ An extension that helps you simpify the process of writing required code for the
 ## Future Plans
 
 * [ ] (Using a json file to) remember the user's ID
+* [ ] Use `QuickPickItem` as the `item` parameter in `ShowQuickPick` instead of just strings to provide better descriptions/hints (specifically for choosing the `fstream` library)
 * [ ] Add Java support
 * [ ] Add Python support
 
@@ -14,7 +15,7 @@ An extension that helps you simpify the process of writing required code for the
 
 ## Features
 
-- Automatically creates the comments section, imports the necessary libraries, and conveniently generates a `main` function and `using namesapce std;`! All you have to do is to enter the task name (usually it is specified in the prompt: if the prompt wants you to output the results to a file called `XXX.out`, then `XXX` is the task name), your USACO user ID, and where you want to store your brilliant code.
+- Automatically creates the comments section, imports the necessary libraries, and conveniently generates a `main` function and `using namesapce std;`! All you have to do is to enter the task name (usually it is specified in the prompt: if the output format is `XXX.out`, then `XXX` is the task name), your USACO user ID, whether you need to use the `fstream` library (same as above), and where you want to store your brilliant code.
 
 <!-- Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
