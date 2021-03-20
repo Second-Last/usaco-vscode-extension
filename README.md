@@ -1,5 +1,5 @@
 <p align="center">
-<img src = "miscellaneous/cowheadlogo.gif" alt = "USACO Cow Head Logo">
+<img src = "https://train.usaco.org/usaco/cowhead2.gif" alt = "USACO Cow Head Logo">
 </p>
 
 <p align = "center">
@@ -61,7 +61,7 @@ As an absolute TS noob (bruh I don't even know how to use JS), there is definite
 
 Initial release of the USACO extension! Supports only C++.
 <p align = "center">
-<img src = "miscellaneous/thumsup.jpg" height = "100" alt = "thumsUpYeah">
+<img src = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1858417866,1011124235&fm=11&gp=0.jpg" height = "100" alt = "thumsUpYeah">
 </p>
 
 ## Disclaimer
