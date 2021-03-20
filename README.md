@@ -55,7 +55,7 @@ This extension contributes the following settings:
 
 As an absolute TS noob (bruh I don't even know how to use JS), there is definitely room for reducing some unnecessary code and warning messages. Even just scanning through the code and reducing clutter helps! I have made comments at suspicious sections and will pin [issues](https://github.com/GZGavinZhao/usaco-vscode-extension/issues) that I have discovered myself but have no idea how to deal with those bad boys.
 
-## Release Notes
+## (Major) Release Notes
 
 ### 0.0.1
 

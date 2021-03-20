@@ -2,7 +2,7 @@
   "name": "usaco",
   "displayName": "USACO Helper",
   "description": "An extension that simplifies the process of writing code in the USACO-required format.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.54.0"
   },
@@ -54,9 +54,13 @@
     "CP",
     "Competitive Programming"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GZGavinZhao/usaco-vscode-extension"
+  },
   "author": "GZGavinZhao",
   "publisher": "GZGavinZhao",
   "preview": true,
-  "icon": "miscellaneous/cowheadlogo.gif",
+  "icon": "images/cowhead2.gif",
   "license": "MIT"
 }
