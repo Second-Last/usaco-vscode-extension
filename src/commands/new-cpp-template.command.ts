@@ -21,12 +21,13 @@ export const newCppTemplate = async (uri: Uri) => {
     }
 
     const fStreamResult = await promptForfStream();
+    console.log(`${fStreamResult}`);
     var fStream;
     if (_.isNil(fStreamResult) || fStreamResult.trim() === "") {
         window.showErrorMessage("You must choose whether to use fstream or not");
         return;
     } else {
-        fStream = fStreamResult === 'Yes' ? true : false;
+        fStream = fStreamResult === '$(check) Yes' ? true : false;
     }
 
     let targetDirectory;
@@ -68,7 +69,7 @@ export const newCppTemplate = async (uri: Uri) => {
     function promptForfStream(): Thenable<string | undefined> {
         const fStreamPromptOptions: QuickPickOptions = {
             canPickMany: false,
-            placeHolder: 'Use fstream? If the in/output format is XXX.in/XXX.out), choose Yes',
+            placeHolder: 'Use fstream? If the in/output format is XXX.in/XXX.out, choose Yes',
         };
         return window.showQuickPick(['$(check) Yes', '$(x) No',], fStreamPromptOptions);
     }
