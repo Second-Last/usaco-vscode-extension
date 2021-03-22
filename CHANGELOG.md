@@ -14,3 +14,7 @@ All notable changes to the "usaco" extension will be documented in this file.
 ### Changed
 - Reorganized folders
 - Use network images in [README.md](README.md) instead of local images
+
+## [0.0.3] - 2021-03-20
+### Fixed
+- Won't use fstream options
