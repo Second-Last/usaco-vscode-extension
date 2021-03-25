@@ -56,9 +56,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/GZGavinZhao/usaco-vscode-extension"
+    "url": "https://github.com/Second-Last/usaco-vscode-extension"
   },
-  "author": "GZGavinZhao",
+  "author": "GZGavinZhao, Second-Last",
   "publisher": "GZGavinZhao",
   "preview": true,
   "icon": "images/cowhead2.gif",
