@@ -5,8 +5,6 @@ import { commands, InputBoxOptions, OpenDialogOptions, QuickPick, QuickPickItem,
 import { existsSync, lstatSync, writeFile } from "fs";
 import { getCppTemplate } from "../templates/cpp.template";
 
-var octicons = require("@primer/octicons");
-
 export const newCppTemplate = async (uri: Uri) => {
     const taskName = (await promptForTaskName());
     if (_.isNil(taskName) || taskName.trim() === "") {
