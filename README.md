@@ -66,7 +66,7 @@ Initial release of the USACO extension! Supports only C++.
 
 ## Disclaimer
 
-This extension is not affiliated nor endorsed by the [USACO](httos://usaco.org) and the USACO staff. Use at your own risk! I'm not responsible for any effect this extension might have on your USACO submissions/grades. (Well theoretically there shouldn't be any, but just in case)
+This extension is not affiliated nor endorsed by the [USACO](httos://usaco.org) and the USACO staff. Use at your own risk! I'm not responsible for any effect this extension might have on your USACO submissions/grades. (Well actually I'm not sure if there's any, but just in case, use it only when you're practicing)
 <!-- 
 -----------------------------------------------------------------------------------------------------------
 ## Following extension guidelines
