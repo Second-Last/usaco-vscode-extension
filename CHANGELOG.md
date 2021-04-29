@@ -18,3 +18,7 @@ All notable changes to the "usaco" extension will be documented in this file.
 ## [0.0.3] - 2021-03-20
 ### Fixed
 - Won't use fstream options
+
+## [0.0.4] - 2021-04-28
+### Fixed
+- Crash on start with error message `Command 'USACO: C++ Template' resulted in an error (command 'usaco.cpp' not found)`
