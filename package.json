@@ -2,7 +2,7 @@
   "name": "usaco",
   "displayName": "USACO Helper",
   "description": "An extension that simplifies the process of writing code in the USACO-required format.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.54.0"
   },
